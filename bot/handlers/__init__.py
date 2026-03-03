@@ -1,6 +1,6 @@
 from aiogram import Router
 
-from .common import router as common_router
+from .start import router as common_router
 
 
 def get_routers() -> list[Router]:
