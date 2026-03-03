@@ -3,6 +3,7 @@ import logging
 import os
 
 from aiogram import Bot, Dispatcher
+from dotenv import load_dotenv
 
 from bot.handlers import get_routers
 
@@ -15,6 +16,7 @@ def setup_logging() -> None:
 
 
 def get_bot_token() -> str:
+    load_dotenv()
     token = os.getenv("BOT_TOKEN")
     if not token:
         raise RuntimeError("Environment variable BOT_TOKEN is not set.")
@@ -33,4 +35,7 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Досрочный выход.")
